@@ -1,0 +1,56 @@
+.app{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.app>h3{
+  font-size: 30px;
+}
+.app>input{
+  width: 200px;
+  height: 60px;
+  margin-top: 20px;
+  padding-left: 10px;
+}
+.app>button{
+  width: 200px;
+  height: 60px;
+  background-color: rgb(26, 118, 238);
+  color: white;
+  font-size: 25px;
+  font-weight: 500;
+  border-radius: 40px;
+  margin-top: 30px;
+}
+
+
+.chatBoxContent{
+  position: relative;
+  border: 2px solid black;
+  height: 80vh;
+  width: 60%;
+  margin: auto;
+ margin-top: 20px;
+  
+}
+.messageBox{
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+
+}
+.messageBox>input{
+  width: 90%;
+  height: 30px;
+  outline: none;
+}
+.messageBox>button{
+  width: 10%;
+  height: 40px;
+  background-color: rgb(34, 117, 241);
+  color: #fff;
+  outline: nones;
+}
