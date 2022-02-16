@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import ScrollToBottom from "react-scroll-to-bottom";
 function ChatComp({ socket, User, room }) {
   const [message, setMessage] = useState("");
   const [messageList, setList] = useState([]);
-  const sendMessage =async () => {
+
+  const sendMessage = async () => {
     if (message !== "") {
       const messageData = {
         room: room,
@@ -19,7 +21,6 @@ function ChatComp({ socket, User, room }) {
       setMessage("");
       console.log(messageList);
     }
-   
   };
   useEffect(() => {
     socket.on("recieve_message", (data) => {
@@ -30,16 +31,22 @@ function ChatComp({ socket, User, room }) {
 
   return (
     <div className="chatBoxContent">
-      <div className="allMessage">
-          {
-              messageList.map((msg,index)=>{
-                return (
-                    <div key={index}>
-                    <p>{msg.message}</p>
-                    </div>
-                )
-              })
-          }
+      <div className="message_container">
+        <ScrollToBottom className="scroller">
+          {messageList.map((msg, index) => {
+            return (
+              <div
+                key={index}
+                className="text"
+                id={User === msg.author ? "mine" : "others"}
+              >
+                <p className="message_text">{msg.message}</p>
+                <p className="message_time">{msg.time}</p>
+                <span style={{ float: "right" }}>{msg.author}</span>
+              </div>
+            );
+          })}
+        </ScrollToBottom>
       </div>
       <div className="messageBox">
         <input
