@@ -1,0 +1,32 @@
+.app{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    flex-direction: column;
+}
+.app_chatApp{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+.app>input{
+    height: 50px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 20px;
+    width: 200px;
+    border: 1px solid lightseagreen;
+    padding: 5px;
+    outline: none;
+}
+.app>button{
+    height: 50px;
+    width: 200px;
+    background-color: lightseagreen;
+    outline: none;
+    font-size: 20px;
+    color: #ffff
+    ;
+}

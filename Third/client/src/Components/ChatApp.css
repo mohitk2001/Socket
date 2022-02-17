@@ -1,0 +1,61 @@
+.chatApp{
+    width: 60%;
+    margin: auto;
+    margin-top: 30px;
+    height: 100%;
+    border: 2px solid seagreen;
+}
+.head_top{
+    width: 100%;
+    display: flex;
+    background-color: rgb(35, 197, 30);
+    align-items: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 2px solid rgb(119, 116, 116);
+    height: 20%;
+}
+
+.head_top>img{
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    object-fit: contain;
+    margin-left: 10px;
+}
+
+.head_top>h2{
+    margin-left: 40px;
+}
+
+.message_list{
+    height: 70%;
+    width: 100%;
+    
+
+}
+.message_input{
+    display: flex;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+}
+.message_input>input{
+    width: 80%;
+    height: 60%;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    background: transparent;
+    padding-left: 20px;
+    border: 1px solid gray;
+}
+.message_input>button{
+    width: 20%;
+    font-size: 20px;
+    height: 60%;
+    color: #ffff;
+    outline: none;
+    background-color: rgb(35, 197, 30);
+    border: none;
+}
