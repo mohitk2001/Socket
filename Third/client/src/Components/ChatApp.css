@@ -1,5 +1,5 @@
 .chatApp{
-    width: 60%;
+    width: 50%;
     margin: auto;
     margin-top: 30px;
     height: 100%;
@@ -31,8 +31,11 @@
 .message_list{
     height: 70%;
     width: 100%;
-    
+    overflow-y: scroll;
 
+}
+.message_list::-webkit-scrollbar{
+    display: none;
 }
 .message_input{
     display: flex;
@@ -58,4 +61,39 @@
     outline: none;
     background-color: rgb(35, 197, 30);
     border: none;
+}
+.msg{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 50%;
+    display: flex;
+    font-size: 1.5vw;
+    flex-direction: column;
+    word-wrap: break-word;
+    border: 1px solid black;
+    padding: 5px;
+}
+#mine{
+    color: rgb(43, 18, 18);
+    background-color: lightgrey;
+    float: right;
+    margin-right: 5px;
+
+}
+#others{
+    color: rgba(236, 236, 241, 0.986);
+    background-color: lightseagreen;
+    margin-left: 5px;
+    float: left;
+}
+.msg>.msg_author{
+    font-size: 0.9vw;
+    font-weight: 500;
+}
+.msg_time{
+    font-size: 0.7vw;
+    font-weight: 400;
+}
+.scoller{
+    height: 100%;
 }

@@ -2,7 +2,7 @@ import "./App.css"
 import React ,{useState,useEffect}from 'react'
 import ChatApp from './Components/ChatApp'
 import { io } from 'socket.io-client'
-
+import Online from "./Components/Online"
 function App() {
   
   const [username,SetUsername] = useState("")
@@ -11,6 +11,10 @@ function App() {
   useEffect(() => {
       
     setSocket(io.connect("http://localhost:8001"));
+
+    return ()=>{
+      socket.off();
+    }
   }, [])
   const handleLogin=()=>{
     if(username!==""){
@@ -21,7 +25,9 @@ function App() {
   if(user){
     return (
       <div className="app_chatApp">
+         <Online socket={socket}/>
         <ChatApp username={username} socket={socket}/>
+       
       </div>
     )
   }

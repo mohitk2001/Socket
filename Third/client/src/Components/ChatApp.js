@@ -1,35 +1,43 @@
 import React, { useEffect, useState } from "react";
 import "./ChatApp.css";
-import { io } from "socket.io-client";
-
+import ScrollToBottom from 'react-scroll-to-bottom';
 function ChatApp({ username, socket }) {
   const [messageList, setmessageList] = useState([]);
   const [message, setMessage] = useState("");
 
   useEffect(() => {
     socket.emit("new-user", username);
-    
   }, []);
   useEffect(() => {
     socket.on("send-message-other", (response) => {
-      console.log(response)
-      setmessageList((messageList)=>[...messageList,response])
+      // console.log(response)
+      setmessageList([...messageList,response.data.messageObj])
     });
-  }, [socket])
+    console.log(messageList);
+    return()=>{
+      socket.off()
+    }
+    
+  }, [socket,messageList])
   
   const sendMessage = async () => {
-    const messageObj = {
-      id:socket.id,
-      message: message,
-      author: username,
-      time:
-        new Date(Date.now()).getHours() +
-        ":" +
-        new Date(Date.now()).getMinutes(),
-    };
-    setMessage("");
-    await socket.emit("send-message", { messageObj });
-    setmessageList((messageList)=>[...messageList,messageObj])
+    if(message!==""){
+      const messageObj = {
+        id:socket.id,
+        message: message,
+        author: username,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      setMessage("");
+      await socket.emit("send-message", { messageObj });
+      setmessageList((messageList)=>[...messageList,messageObj])
+    }
+    else{
+      alert("Input filed should be filled")
+    }
   };
 
   return (
@@ -42,15 +50,19 @@ function ChatApp({ username, socket }) {
         <h2>iChat</h2>
       </div>
       <div className="message_list">
+       <ScrollToBottom className="scoller">
        {
          messageList?.map((msg,index)=>{
            return (
-             <div className="msg" key={index}>
-               <p>{msg.message}</p>
+             <div className="msg" key={index} id={ msg?.id===socket.id ? "mine":"others"}>
+               <p className="msg_text">{msg.message}</p>
+               <p className="msg_author">- {msg.author}</p>
+               <p className="msg_time">{msg.time}</p>
              </div>
            )
          })
        }
+       </ScrollToBottom>
       </div>
       <div className="message_input">
         <input
