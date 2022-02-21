@@ -1,16 +1,17 @@
 import "./App.css"
 import React ,{useState,useEffect}from 'react'
-
-import { io } from 'socket.io-client'
 import ChatApp from './Components/ChatApp'
+import { io } from 'socket.io-client'
+
 function App() {
-  let socket;
-  useEffect(() => {
-    socket=io.connect("http://localhost:8001");
-  }, [])
   
   const [username,SetUsername] = useState("")
+  const [socket,setSocket]=useState("");
   const [user,setUser]=useState(false);
+  useEffect(() => {
+      
+    setSocket(io.connect("http://localhost:8001"));
+  }, [])
   const handleLogin=()=>{
     if(username!==""){
       setUser(true);
@@ -20,7 +21,7 @@ function App() {
   if(user){
     return (
       <div className="app_chatApp">
-        <ChatApp socket={socket} username={username}/>
+        <ChatApp username={username} socket={socket}/>
       </div>
     )
   }
